@@ -39,7 +39,7 @@ function MyProfile() {
   }, [])
   return (
         <div className="md:p-8 flex flex-col md:flex-row gap-8 text-sm leading-relaxed justify-center items-center">
-          <img src="/my-pixelart.png" alt="pixel-art" style={{width: "150px"}} className="px-7"/>
+          <img src="/my-pixelart.png" alt="pixel-art" style={{height: "230px"}} className="px-7"/>
           <div className="flex-1 min-w-0 text-xs md:text-base">
             <p className="text-[#5c6773] text-center md:text-left"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
             <div className="grid grid-cols-[110px_1fr] gap-y-1.5">
