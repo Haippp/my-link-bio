@@ -1,65 +1,94 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+
+function AnimateASCII(){
+  const [simbol, setSimbol] = useState("")
+  const simbols = ["!", "|", "+", "?", "-"]
+  useEffect(() => {
+    let i = 0
+    const intervals = setInterval(() => {
+      setSimbol(() => {
+        if(i > 5) i = 0
+        return simbols[i]
+      })
+      i++
+    }, 300)
+    
+    return () =>  clearInterval(intervals)
+  }, [])
+  return <span>{simbol}</span>
+}
+
+function MyProfile() {
+  const [status, setStatus] = useState("")
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStatus((prevStatus) => {
+        console.log(prevStatus)
+        let newStatus = ""
+        if(prevStatus == "text-[#79c0ff]") newStatus = "text-[#fffd79]"
+        else if(prevStatus == "text-[#fffd79]") newStatus = "text-[#7ee787]"
+        else {newStatus = "text-[#79c0ff]"}
+
+        console.log(newStatus)
+        return newStatus
+      })
+    }, 500)
+    return () => clearInterval(interval)
+  }, [])
+  return (
+        <div className="md:p-8 flex flex-col md:flex-row gap-8 text-sm leading-relaxed justify-center items-center">
+          <img src="/my-pixelart.png" alt="pixel-art" style={{width: "150px"}} className="px-7"/>
+          <div className="flex-1 min-w-0 text-xs md:text-base">
+            <p className="text-[#5c6773]"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
+            <div className="grid grid-cols-[110px_1fr] gap-y-1.5">
+              <span className="text-[#79c0ff]">Nama</span>
+              <span className="text-[#e6edf3]">: Haiper Alexander</span>
+              <span className="text-[#79c0ff]">Peran</span>
+              <span className="text-[#e6edf3]">: Full-stack Developer</span>
+              <span className="text-[#79c0ff]">Hobi</span>
+              <span className="text-[#e6edf3]">
+                : Ngoding dan Turu
+              </span>
+              <span className="text-[#79c0ff]">Lokasi</span>
+              <span className="text-[#e6edf3]">: Kamar tidur</span>
+              <span className="text-[#79c0ff]">Uptime</span>
+              <span className="text-[#e6edf3]">: Ngoding sejak masih jadi Zigot </span>
+              <span className="text-[#79c0ff]">Tools</span>
+              <span className="text-[#e6edf3]">: VS Code, Docker, Git</span>
+              <span className="text-[#79c0ff]">Status</span>
+              <span className="text-[#e6edf3]">
+                <span className={status}>●</span> online, siap ngoding
+              </span>
+            </div>
+
+            <p className="text-[#5c6773] mt-3"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
+          </div>
+        </div>
+  );
+}
+
+function Command({ user = "guest", command }) {
+  return (
+    <div className="mt-2">
+      <span className="text-blue-400">{user}@link-bio</span>
+      <span>:~$ </span>
+      <span className="text-white">{command}</span>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="p-6">
+      <MyProfile/>
+      <Command command="ls -la /links"/>
+      <div className="mt-2">
+        <a href="https://github.com/Haippp" className="hover:bg-green-700 text-white inline-block w-full px-4 py-"><span className="text-green-400">1.</span> Github</a>
+        <a href="http://linkedin.com/in/hipni-c030324071/" className="hover:bg-green-700 text-white inline-block w-full px-4 py-"><span className="text-green-400">2.</span> LinkedIn</a>
+        <a href="https://www.instagram.com/haiper_alexander/" className="hover:bg-green-700 text-white inline-block w-full px-4 py-"><span className="text-green-400">3.</span> Instagram</a>
+      </div>
     </div>
   );
 }
