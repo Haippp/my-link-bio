@@ -41,7 +41,7 @@ function MyProfile() {
         <div className="md:p-8 flex flex-col md:flex-row gap-8 text-sm leading-relaxed justify-center items-center">
           <img src="/my-pixelart.png" alt="pixel-art" style={{width: "150px"}} className="px-7"/>
           <div className="flex-1 min-w-0 text-xs md:text-base">
-            <p className="text-[#5c6773]"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
+            <p className="text-[#5c6773] text-center md:text-left"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
             <div className="grid grid-cols-[110px_1fr] gap-y-1.5">
               <span className="text-[#79c0ff]">Nama</span>
               <span className="text-[#e6edf3]">: Haiper Alexander</span>
@@ -63,7 +63,7 @@ function MyProfile() {
               </span>
             </div>
 
-            <p className="text-[#5c6773] mt-3"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
+            <p className="text-[#5c6773] mt-3 text-center md:text-left"><AnimateASCII/>-----------------------------<AnimateASCII/></p>
           </div>
         </div>
   );
