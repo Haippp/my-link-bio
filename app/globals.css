@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
-@keyframes terminal-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@keyframes fade {
+  0%, 80% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
-.animate-blink {
-  animation: terminal-blink 1s step-end infinite;
+.fade1 {
+  animation: fade 3.2s ease-in;
+}
+.fade2 {
+  animation: fade 3.4s ease-in;
+}
+.fade3 {
+  animation: fade 3.6s ease-in;
 }
