@@ -93,7 +93,7 @@ function Typing({value}){
 function Command({ user = "guest", command }) {
   return (
     <div className="mt-2">
-      <span className="text-blue-400">{user}@link-bio</span>
+      <span className="text-blue-400">{user}@dev-machine</span>
       <span>:~$ </span>
       <Typing value={command}/>
     </div>
